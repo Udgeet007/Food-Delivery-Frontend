@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import React, { useEffect, useState } from "react";
 
 const data = [
   {
@@ -10,26 +10,28 @@ const data = [
   },
   {
     id: 2,
-    title: "we deliver your order whenever you are in NY",
+    title: "we deliver your order wherever you are in NY",
     image: "/slide2.png",
   },
   {
     id: 3,
     title: "the best pizza to share with your family",
-    image: "/slide3.png",
+    image: "/slide3.jpg",
   },
 ];
 
 export const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() =>
-  //     setCurrentSlide((prev) => (prev === data.length -1 ? 0 : prev + 1)),
-  //     2000
-  //   );
-  //   return () => clearInterval(interval);
-  // }, []);
+  useEffect(() => {
+    const interval = setInterval(
+      () =>
+        setCurrentSlide((prev) => (prev === data.length - 1 ? 0 : prev + 1)),
+      4000
+    );
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="flex flex-col h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] lg:flex-row bg-fuchsia-50">
       {/* TEXT CONTAINER */}
@@ -40,7 +42,7 @@ export const Slider = () => {
         <button className="bg-red-500 text-white py-4 px-8">Order Now</button>
       </div>
       {/* IMAGE CONTAINER */}
-      <div className="w-full h-1/2 relative">
+      <div className="w-full flex-1 relative">
         <Image
           src={data[currentSlide].image}
           alt=""
@@ -51,3 +53,4 @@ export const Slider = () => {
     </div>
   );
 };
+
